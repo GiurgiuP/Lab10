@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Cărților</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Lista Cărților</h1>
+
+    <form method="post" action="/operatii">
+        <input type="text" name="isbn" placeholder="ISBN..." size="46"/>
+        <input type="text" name="titlu" placeholder="Titlu..." size="46"/>
+        <input type="text" name="autor" placeholder="Autor..." size="46"/>
+        <input type="submit" name="adauga" value="Adauga" class="btn btn-primary"/>
+        <input type="submit" name="modifica" value="Modifica" class="btn btn-warning"/>
+        <input type="submit" name="sterge" value="Sterge" class="btn btn-danger"/>
+    </form>
+
+    <div th:if="${mesaj}">
+        <p th:text="${mesaj}"></p>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Titlu</th>
+            <th>Autor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="carte : ${carti}">
+            <td th:text="${carte.isbn}"></td>
+            <td th:text="${carte.titlu}"></td>
+            <td th:text="${carte.autor}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
